@@ -19,7 +19,7 @@ body {
 
 .slides {
     height: 500px;
-    width: 100%;
+    flex-grow: 1;
 }
 
 .slides img {
