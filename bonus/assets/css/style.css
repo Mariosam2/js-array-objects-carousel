@@ -1,6 +1,7 @@
 :root {
     --bg-primary: #16001e;
     --buttons-bg: hsl(290,50%,20%);
+    
 }
 
 * {
@@ -19,7 +20,7 @@ body {
 
 .slides {
     height: 500px;
-    flex-grow: 1;
+    width: 80%;
 }
 
 .slides img {
@@ -40,11 +41,38 @@ body {
     width: 200px;
 }
 
+.thumb {
+    width: 100%;
+    height: 80px;
+    position: relative;
+}
+
+.thumb.active .layover {
+    display: none;
+}
+
+.layover {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(0,0,0, 0.7);
+    z-index: 99999;
+}
+
+.thumb-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center right;
+}
+
 
 .next, .prev {
     background-color:var(--buttons-bg);
-    display: flex;
-    align-items: center;
+    width: 100%;
+    
 }
 
 .next:hover i, .prev:hover i{
@@ -56,4 +84,20 @@ body {
     color: white;
     display: inline-block;
     padding: 0.5rem;
+    rotate: 90deg;
+}
+
+.ms_btn {
+    background-color: var(--buttons-bg);
+}
+
+.btn.ms_btn:hover {
+    background-color: var(--buttons-bg);
+    
+}
+
+.btn.ms_btn:first-child:active, .ms_btn.btn:active {
+    background-color: var(--buttons-bg);
+    scale: 0.9;
+    border: none;
 }

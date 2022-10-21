@@ -4,9 +4,14 @@
 -descrizione Creare un carosello come nella foto allegata. */
 const container = document.querySelector('.slides');
 const imageElements = document.getElementsByClassName('slide');
+const thumbs = document.getElementsByClassName('thumb');
 const nextButton = document.querySelector('.next');
 const prevButton = document.querySelector('.prev');
+const startButton = document.getElementById('start');
+const stopButton = document.getElementById('stop');
+const invertButton = document.getElementById('invert');
 let counter = 0;
+let clicks = 0;
 const IMAGES = [
     {
         image: 'img/01.webp',
@@ -31,6 +36,7 @@ const IMAGES = [
     }
 ];
 generateImages(IMAGES, container);
+generateThumbs(IMAGES, nextButton);
 console.log(imageElements);
 nextButton.addEventListener('click',function () {
     next();
@@ -38,6 +44,26 @@ nextButton.addEventListener('click',function () {
 prevButton.addEventListener('click', function () {
     prev();
 })
+let slideshow;
+let backwardSlideshow;
+startButton.addEventListener('click', function (){
+    clearInterval(backwardSlideshow);
+    slideshow = setInterval(next, 3000);
+    
+    
+});
+
+stopButton.addEventListener('click', function (){
+    
+    clearInterval(slideshow);
+    clearInterval(backwardSlideshow);   
+});
+
+invertButton.addEventListener('click', function(){
+    clearInterval(slideshow);
+    backwardSlideshow = setInterval(prev, 3000);
+
+});
 //console.log(imageElements);
 /**
  * Takes an array of imgs and a domElement and generate the images
@@ -48,7 +74,7 @@ prevButton.addEventListener('click', function () {
 function generateImages(arrayOfImages, domElement){
     arrayOfImages.forEach((image,index) => {
         let imgEl = document.createElement('img');
-        imgEl.classList.add('slide')
+        imgEl.classList.add('slide','rounded-2')
         if(index == 0){
             imgEl.classList.add('active');
         }
@@ -57,13 +83,33 @@ function generateImages(arrayOfImages, domElement){
     })
     
 }
+/**
+ * Takes an array of imgs and a domElement and generate the thumbs
+ * @param {object} arrayOfImages array of image objects
+ * @param {object} domElement element where to append the HTML code
+ */
+function generateThumbs(arrayOfImages, domElement){
+    arrayOfImages.forEach((image,index) => {
+        let boxMarkup = `<div class="thumb"><div class="layover"></div><img class="thumb-img" src="/assets/${image.image}"></div>`
+        if(index == 0){
+            boxMarkup = `<div class="thumb active"><div class="layover"></div><img class="thumb-img" src="/assets/${image.image}"></div>`
+        }
+    
+        
+        domElement.insertAdjacentHTML('beforebegin',boxMarkup)
+    })
+}
 
 // Milestone 2 ciclo infinito del carosello
 // next farà il display dell'immagine successiva nell'array
 function next(){
+    console.log(counter);
+    let currentThumb = thumbs[counter];
     let currentImage = imageElements[counter];
-    console.log(currentImage)
+    //console.log(currentImage)
+    console.log(currentThumb);
     currentImage.classList.remove('active');
+    currentThumb.classList.remove('active');
     counter++;
     console.log(counter)
     if(counter >= imageElements.length){
@@ -71,13 +117,19 @@ function next(){
     }
     console.log(counter)
     currentImage = imageElements[counter];
+    currentThumb = thumbs[counter];
     currentImage.classList.add('active');
+    currentThumb.classList.add('active');
+    console.log(currentThumb);
 }
 //prev farà il display dell'immagine precedente nell'array
 function prev(){
+    let currentThumb = thumbs[counter];
     let currentImage = imageElements[counter];
-    console.log(currentImage)
+    //console.log(currentImage)
+    console.log(currentThumb);
     currentImage.classList.remove('active');
+    currentThumb.classList.remove('active');
     counter--;
     console.log(counter)
     if(counter < 0){
@@ -85,7 +137,10 @@ function prev(){
     }
     console.log(counter)
     currentImage = imageElements[counter];
+    currentThumb = thumbs[counter];
     currentImage.classList.add('active');
+    currentThumb.classList.add('active')
+    console.log(currentThumb);
 }
 
 
