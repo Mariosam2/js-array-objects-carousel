@@ -38,7 +38,7 @@ const IMAGES = [
 generateImages(IMAGES, container);
 generateThumbs(IMAGES, nextButton);
 console.log(imageElements);
-nextButton.addEventListener('click',function () {
+nextButton.addEventListener('click', function () {
     next();
 })
 prevButton.addEventListener('click', function () {
@@ -46,22 +46,41 @@ prevButton.addEventListener('click', function () {
 })
 let slideshow;
 let backwardSlideshow;
-startButton.addEventListener('click', function (){
-    clearInterval(backwardSlideshow);
-    slideshow = setInterval(next, 3000);
+startButton.addEventListener('click', function () {
+    if (!this.classList.contains('clicked')) {
+        clearInterval(backwardSlideshow);
+        slideshow = setInterval(next, 3000);
+    }
+    this.classList.add('clicked');
+    stopButton.classList.remove('clicked');
+    invertButton.classList.remove('clicked');
     
-    
+
+
 });
 
-stopButton.addEventListener('click', function (){
+stopButton.addEventListener('click', function () {
+    if (!this.classList.contains('clicked')) {
+        clearInterval(slideshow);
+        clearInterval(backwardSlideshow);
+    }
+    this.classList.add('clicked');
+    startButton.classList.remove('clicked');
+    invertButton.classList.remove('clicked');
     
-    clearInterval(slideshow);
-    clearInterval(backwardSlideshow);   
+
 });
 
-invertButton.addEventListener('click', function(){
-    clearInterval(slideshow);
-    backwardSlideshow = setInterval(prev, 3000);
+invertButton.addEventListener('click', function () {
+    if (!this.classList.contains('clicked')) {
+        clearInterval(slideshow);
+        backwardSlideshow = setInterval(prev, 3000);
+
+    }
+    this.classList.add('clicked');
+    startButton.classList.remove('clicked');
+    stopButton.classList.remove('clicked');
+    
 
 });
 //console.log(imageElements);
@@ -71,38 +90,38 @@ invertButton.addEventListener('click', function(){
  * @param {object} domElement element where to append the HTML code
  */
 //Milestone 1 genero dinamicamente gli elementi del carosello
-function generateImages(arrayOfImages, domElement){
-    arrayOfImages.forEach((image,index) => {
+function generateImages(arrayOfImages, domElement) {
+    arrayOfImages.forEach((image, index) => {
         let imgEl = document.createElement('img');
-        imgEl.classList.add('slide','rounded-2')
-        if(index == 0){
+        imgEl.classList.add('slide', 'rounded-2')
+        if (index == 0) {
             imgEl.classList.add('active');
         }
         imgEl.src = './assets/' + image.image;
         domElement.insertAdjacentElement('beforeend', imgEl);
     })
-    
+
 }
 /**
  * Takes an array of imgs and a domElement and generate the thumbs
  * @param {object} arrayOfImages array of image objects
  * @param {object} domElement element where to append the HTML code
  */
-function generateThumbs(arrayOfImages, domElement){
-    arrayOfImages.forEach((image,index) => {
+function generateThumbs(arrayOfImages, domElement) {
+    arrayOfImages.forEach((image, index) => {
         let boxMarkup = `<div class="thumb"><div class="layover"></div><img class="thumb-img" src="/assets/${image.image}"></div>`
-        if(index == 0){
+        if (index == 0) {
             boxMarkup = `<div class="thumb active"><div class="layover"></div><img class="thumb-img" src="/assets/${image.image}"></div>`
         }
-    
-        
-        domElement.insertAdjacentHTML('beforebegin',boxMarkup)
+
+
+        domElement.insertAdjacentHTML('beforebegin', boxMarkup)
     })
 }
 
 // Milestone 2 ciclo infinito del carosello
 // next farà il display dell'immagine successiva nell'array
-function next(){
+function next() {
     console.log(counter);
     let currentThumb = thumbs[counter];
     let currentImage = imageElements[counter];
@@ -112,7 +131,7 @@ function next(){
     currentThumb.classList.remove('active');
     counter++;
     console.log(counter)
-    if(counter >= imageElements.length){
+    if (counter >= imageElements.length) {
         counter = 0;
     }
     console.log(counter)
@@ -123,7 +142,7 @@ function next(){
     console.log(currentThumb);
 }
 //prev farà il display dell'immagine precedente nell'array
-function prev(){
+function prev() {
     let currentThumb = thumbs[counter];
     let currentImage = imageElements[counter];
     //console.log(currentImage)
@@ -132,7 +151,7 @@ function prev(){
     currentThumb.classList.remove('active');
     counter--;
     console.log(counter)
-    if(counter < 0){
+    if (counter < 0) {
         counter = imageElements.length - 1;
     }
     console.log(counter)
