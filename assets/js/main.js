@@ -4,6 +4,9 @@
 -descrizione Creare un carosello come nella foto allegata. */
 const container = document.querySelector('.slides');
 const imageElements = document.getElementsByClassName('slide');
+const nextButton = document.querySelector('.next');
+const prevButton = document.querySelector('.prev');
+let counter = 0;
 const IMAGES = [
     {
         image: 'img/01.webp',
@@ -29,6 +32,13 @@ const IMAGES = [
 ];
 generateImages(IMAGES, container);
 console.log(imageElements);
+nextButton.addEventListener('click',function () {
+    next();
+})
+prevButton.addEventListener('click', function () {
+    prev();
+})
+//console.log(imageElements);
 /**
  * Takes an array of imgs and a domElement and generate the images
  * @param {object} arrayOfImages array of image objects
@@ -48,5 +58,34 @@ function generateImages(arrayOfImages, domElement){
     
 }
 
+// Milestone 2 ciclo infinito del carosello
+// next farà il display dell'immagine successiva nell'array
+function next(){
+    let currentImage = imageElements[counter];
+    console.log(currentImage)
+    currentImage.classList.remove('active');
+    counter++;
+    console.log(counter)
+    if(counter >= imageElements.length){
+        counter = 0;
+    }
+    console.log(counter)
+    currentImage = imageElements[counter];
+    currentImage.classList.add('active');
+}
+//prev farà il display dell'immagine precedente nell'array
+function prev(){
+    let currentImage = imageElements[counter];
+    console.log(currentImage)
+    currentImage.classList.remove('active');
+    counter--;
+    console.log(counter)
+    if(counter < 0){
+        counter = imageElements.length - 1;
+    }
+    console.log(counter)
+    currentImage = imageElements[counter];
+    currentImage.classList.add('active');
+}
 
 

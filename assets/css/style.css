@@ -9,7 +9,7 @@
 }
 
 .slides {
-    max-height: 500px;
+    height: 500px;
     width: 100%;
 }
 
@@ -18,6 +18,7 @@
     height: 100%;
     width: 100%;
     object-fit: cover;
+    object-position: center right;
     
 }
 
