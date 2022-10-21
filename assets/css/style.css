@@ -3,3 +3,42 @@
     margin: 0;
     padding: 0;
 }
+
+#site_main {
+    height: 100vh;
+}
+
+.slides {
+    max-height: 500px;
+    width: 100%;
+}
+
+.slides img {
+    display: none;
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    
+}
+
+.slides .active {
+    display: block;
+    
+}
+
+.next, .prev {
+    background-color: rgba(0,0,0, 0.8);
+    display: flex;
+    align-items: center;
+}
+
+.next:hover i, .prev:hover i{
+    cursor: pointer;
+    scale: 1.2;
+}
+
+.next i , .prev i {
+    color: white;
+    display: inline-block;
+    padding: 0.5rem;
+}
