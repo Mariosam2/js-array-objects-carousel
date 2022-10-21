@@ -1,0 +1,55 @@
+:root {
+    --bg-primary: #16001e;
+    --buttons-bg: hsl(290,50%,20%);
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: var(--bg-primary);
+}
+
+#site_main {
+    height: 100vh;
+}
+
+.slides {
+    height: 500px;
+    width: 100%;
+}
+
+.slides img {
+    display: none;
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    object-position: center right;
+    
+}
+
+.slides .active {
+    display: block;
+    
+}
+
+
+.next, .prev {
+    background-color:var(--buttons-bg);
+    display: flex;
+    align-items: center;
+}
+
+.next:hover i, .prev:hover i{
+    cursor: pointer;
+    scale: 1.2;
+}
+
+.next i , .prev i {
+    color: white;
+    display: inline-block;
+    padding: 0.5rem;
+}
