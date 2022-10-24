@@ -22,8 +22,13 @@ body {
     flex-grow: 1;
 }
 
-.slides img {
+.slides .slide {
+    height: 100%;
     display: none;
+    position: relative;
+}
+
+.slides .slide img {
     height: 100%;
     width: 100%;
     object-fit: cover;
@@ -31,9 +36,38 @@ body {
     
 }
 
-.slides .active {
+.slides .slide.active  {
     display: block;
     
+}
+
+.slide .caption {
+    padding: 1rem;
+    
+}
+
+.slide h3.caption{
+    position: absolute;
+    top: 65%;
+    left: 50%;
+    translate: -50% -50%;
+}
+
+.slide p.caption{
+    position: absolute;
+    top: 85%;
+    left: 50%;
+    translate: -50% -50%;
+}
+
+.layover {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(0,0,0, 0.7);
+    z-index: 0;
 }
 
 
