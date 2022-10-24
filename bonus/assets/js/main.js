@@ -90,17 +90,12 @@ invertButton.addEventListener('click', function () {
  * @param {object} domElement element where to append the HTML code
  */
 //Milestone 1 genero dinamicamente gli elementi del carosello
-function generateImages(arrayOfImages, domElement) {
-    arrayOfImages.forEach((image, index) => {
-        let imgEl = document.createElement('img');
-        imgEl.classList.add('slide', 'rounded-2')
-        if (index == 0) {
-            imgEl.classList.add('active');
-        }
-        imgEl.src = './assets/' + image.image;
-        domElement.insertAdjacentElement('beforeend', imgEl);
+function generateImages(arrayOfImages, domElement){
+    arrayOfImages.forEach((image,index) => {
+        let slideMarkup = `<div class="slide ${index === 0 ? 'active': ''}"><div class="layover"></div><img class="img-fluid" src="/assets/${image.image}"><h3 class="caption text-white text-center">${image.title}</h3><p class="caption text-white text-center">${image.text}</p></div>`;
+        domElement.insertAdjacentHTML('beforeend', slideMarkup);
     })
-
+    
 }
 /**
  * Takes an array of imgs and a domElement and generate the thumbs
