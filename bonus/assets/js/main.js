@@ -92,7 +92,7 @@ invertButton.addEventListener('click', function () {
 //Milestone 1 genero dinamicamente gli elementi del carosello
 function generateImages(arrayOfImages, domElement){
     arrayOfImages.forEach((image,index) => {
-        let slideMarkup = `<div class="slide ${index === 0 ? 'active': ''}"><div class="layover"></div><img class="img-fluid" src="/assets/${image.image}"><h3 class="caption text-white text-center">${image.title}</h3><p class="caption text-white text-center">${image.text}</p></div>`;
+        let slideMarkup = `<div class="slide ${index === 0 ? 'active': ''}"><div class="layover"></div><img class="img-fluid" src="/assets/${image.image}"><div class="caption"><h3 class="text-white text-center">${image.title}</h3><p class="text-white text-center">${image.text}</p></div></div>`;
         domElement.insertAdjacentHTML('beforeend', slideMarkup);
     })
     

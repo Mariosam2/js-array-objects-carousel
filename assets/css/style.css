@@ -41,23 +41,17 @@ body {
     
 }
 
-.slide .caption {
+.slide .caption{
     padding: 1rem;
-    
-}
-
-.slide h3.caption{
+    width: 80%;
     position: absolute;
-    top: 65%;
+    top: 80%;
     left: 50%;
     translate: -50% -50%;
 }
 
-.slide p.caption{
-    position: absolute;
-    top: 85%;
-    left: 50%;
-    translate: -50% -50%;
+.slide .caption >* {
+    margin: 1rem 0;
 }
 
 .layover {
