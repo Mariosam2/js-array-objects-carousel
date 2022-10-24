@@ -104,13 +104,13 @@ function generateImages(arrayOfImages, domElement){
  */
 function generateThumbs(arrayOfImages, domElement) {
     arrayOfImages.forEach((image, index) => {
-        let boxMarkup = `<div class="thumb"><div class="layover"></div><img class="thumb-img" src="/assets/${image.image}"></div>`
+        let thumbMarkup = `<div class="thumb"><div class="layover"></div><img class="thumb-img" src="/assets/${image.image}"></div>`
         if (index == 0) {
-            boxMarkup = `<div class="thumb active"><div class="layover"></div><img class="thumb-img" src="/assets/${image.image}"></div>`
+            thumbMarkup = `<div class="thumb active"><div class="layover"></div><img class="thumb-img" src="/assets/${image.image}"></div>`
         }
 
 
-        domElement.insertAdjacentHTML('beforebegin', boxMarkup)
+        domElement.insertAdjacentHTML('beforebegin', thumbMarkup)
     })
 }
 
